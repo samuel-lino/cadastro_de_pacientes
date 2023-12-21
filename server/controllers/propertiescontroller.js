@@ -34,6 +34,11 @@ module.exports = {
         const propertieslit = await properties.find()
         const {index} = request.params
         const newproperties = request.body
+        if(!propertieslit[index]){
+            return response.status(400).json({
+                error: "paciente não encontrado"
+                })
+        }
         await properties.updateOne(propertieslit[index], newproperties)
         const propertieslist = await properties.find()
         return response.json(propertieslist)
@@ -43,6 +48,11 @@ module.exports = {
     async delete(request, response){
         const propertieslit = await properties.find()
         const {index} = request.params
+        if(!propertieslit[index]){
+            return response.status(400).json({
+                error: "paciente não encontrado"
+                })
+        }
         await properties.deleteOne(propertieslit[index])
         const propertieslist = await properties.find()
         return response.json(propertieslist)
