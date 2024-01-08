@@ -1,0 +1,74 @@
+.App {
+  text-align: center;
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.info{
+  display: flex;
+  flex-direction: row;
+}
+.info_bio{
+  margin: 4px;
+  border: solid black;
+  display: flex;
+  flex-direction: column;
+}
+.lista{
+  display: flex;
+  flex-direction: column;
+}
+.alterar{
+  display: flex;
+  flex-direction: row;
+  margin-left: 20%;
+    
+}
+.alterar button{
+  font-size: 2rem;
+  margin-bottom: 1%;
+}
+.modal{
+  position:fixed;
+}
+.formulario{
+  width: 30%;
+  height: 70%;
+  max-width: 30%;
+  max-height: 85%;
+  flex-direction: column;
+  display: flex;
+  position: fixed;
+  background-color: antiquewhite;
+  color: #282c34;
+  text-align: left;
+  font-size: 1.1rem;
+}
+.dados *{
+  margin: 0.9%;
+}
+.text_scrol{
+  overflow-y: scroll;
+  max-height: 4rem;
+}
+.info_data{
+  background-color: azure;
+  border:transparent black;
+}
+.info_data button{
+  text-align: right;
+}

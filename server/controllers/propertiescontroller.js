@@ -31,30 +31,27 @@ module.exports = {
     },
 
     async update(request, response){
-        const propertieslit = await properties.find()
-        const {index} = request.params
+        const {id} = request.params
         const newproperties = request.body
-        if(!propertieslit[index]){
+        const props = await properties.findByIdAndUpdate({_id: id}, newproperties)
+        if(!props){
             return response.status(400).json({
                 error: "paciente não encontrado"
                 })
         }
-        await properties.updateOne(propertieslit[index], newproperties)
-        const propertieslist = await properties.find()
-        return response.json(propertieslist)
+        return response.json(props)
 
     },
 
     async delete(request, response){
-        const propertieslit = await properties.find()
-        const {index} = request.params
-        if(!propertieslit[index]){
-            return response.status(400).json({
+        const {id} = request.params
+        const props = await properties.findByIdAndDelete({ _id : id });
+        if(!props){
+            return response.status(401).json({
                 error: "paciente não encontrado"
-                })
+            })
         }
-        await properties.deleteOne(propertieslit[index])
-        const propertieslist = await properties.find()
-        return response.json(propertieslist)
+        return response.json(props)
+        
     }
 }
