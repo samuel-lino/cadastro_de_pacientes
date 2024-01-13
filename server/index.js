@@ -9,7 +9,6 @@ app.use(cors())
 
 app.use(router)
 app.use((req, res, next) => {
-    const origin = req.headers.origin;
 
     res.header('Access-Control-Allow-Origin', '*'); // ou '*' para permitir de qualquer origem
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
