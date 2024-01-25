@@ -26,6 +26,9 @@
   border: solid black;
   display: flex;
   flex-direction: column;
+  background-color: aquamarine;
+  color: black;
+  border-radius: 30px;
 }
 .lista{
   display: flex;
@@ -34,7 +37,6 @@
 .alterar{
   display: flex;
   flex-direction: row;
-  margin-left: 20%;
     
 }
 .alterar button{
@@ -42,33 +44,42 @@
   margin-bottom: 1%;
 }
 .modal{
+  margin-top: 3rem;
   position:absolute;
-  left: 50%;
+  margin-left: 35vw;
 }
 .formulario{
-  width: 30%;
-  height: 70%;
-  max-width: 30%;
-  max-height: 85%;
+  width: 35%;
+  height: 88vw;
+  max-width: 35%;
+  max-height: 88%;
   flex-direction: column;
   display: flex;
   position: fixed;
   background-color: antiquewhite;
   color: #282c34;
-  text-align: left;
+  text-align: center;
   font-size: 1.1rem;
+  box-shadow: rgb(135, 131, 131) 5px 1px 0px;
+}
+.edit{
+  text-align: left;
 }
 .dados *{
   margin: 0.9%;
 }
 .text_scrol{
   overflow-y: scroll;
-  max-height: 4rem;
+  max-height: 6rem;
 }
 .info_data{
-  background-color: azure;
+  background-color: rgb(90, 103, 103);
   border:transparent black;
 }
 .info_data button{
   text-align: right;
+}
+
+.btn{
+  margin-left: 2rem;
 }

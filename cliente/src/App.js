@@ -25,7 +25,7 @@ function App() {
   const [remedios , setremedios] = useState([])
   const vac = vacina.map(vacinas=>(
     <div className='info_data'>
-    <p id={vacinas.nome + '*' + vacinas.data}> Vacina: {vacinas.nome} <span>aplicada em: {vacinas.data}</span><button onClick={(event)=>{
+    <p id={vacinas.nome + '*' + vacinas.data}> Vacina: {vacinas.nome} <span>aplicada em: {vacinas.data}</span><button className='btn btn-danger' onClick={(event)=>{
       var pai = event.currentTarget.parentElement;
       var pai1 = pai.parentElement;
       var dado = pai1.querySelector('p').getAttribute('id');
@@ -33,19 +33,19 @@ function App() {
       var dados = {nome: dividir[0], data: dividir[1]};
       var newvacinas = vacina.filter(vac => vac.nome !== dados.nome || vac.data !== dados.data);
       setvacinas(newvacinas)
-    }}>excluir</button></p>
+    }}>X</button></p>
     
     </div>
     ))
     const conteudo = remedios.map(medicamentos =>(
       <div className='info_data'>
-      <p id={medicamentos}>{medicamentos}<button className='exclude'  onClick={(event)=>{
+      <p id={medicamentos}>{medicamentos}<button className='exclude btn btn-danger'  onClick={(event)=>{
         var pai = event.currentTarget.parentElement;
         var pai1 = pai.parentElement;
         var dado = pai1.querySelector('p').getAttribute('id');
         var newremedios = remedios.filter(vac => vac !== dado );
         setremedios(newremedios)
-      }}>excluir</button></p>
+      }}>X</button></p>
       
       </div>
       ))
@@ -55,13 +55,13 @@ function App() {
         <h4>{paciente.cpf}</h4>
         <h4>{paciente.nascimento}</h4>
         <div className='alterar'>
-        <button  id={paciente._id} onClick={(event)=>{
+        <button  className='btn btn-danger btn-sm' id={paciente._id} onClick={(event)=>{
           var id = event.currentTarget.getAttribute('id');
           console.log(id)
           deletar(id);
         }
       }>Deletar</button>
-      <button id={paciente._id} onClick={(event)=>{
+      <button className='btn btn-primary btn-sm' id={paciente._id} onClick={(event)=>{
         var id = event.currentTarget.getAttribute('id');
         setmodal('Editar')
         var paciente = dados.filter(item=>item._id === id)
@@ -76,7 +76,7 @@ function App() {
         <div className="App">
         <header className="App-header">
         <Head/>
-        <button className='criar' onClick={()=>{
+        <button className='criar' style={{marginTop: '1rem'}} onClick={()=>{
           $('.modal').css('display', 'flex');
           
           setmodal('Adicionar')
@@ -85,7 +85,7 @@ function App() {
         <div className='modal' style={{display:'none'}}>
         <div className='formulario' id={modal}>
         <h4>{modal}</h4>
-        <div className='edit'></div>
+        <div className='edit'>
         <div className='dados'>
         <label id='nome'>Nome:</label>
         <input className='nome'></input>
@@ -125,7 +125,7 @@ function App() {
         </div>
         <div className='dados'>
         <label>Medicamentos</label>
-        <input className='medicamentos'></input><button className='addremedio' onClick={()=>{
+        <input className='medicamentos'></input><button className='addremedio btn btn-primary' onClick={()=>{
           var ds = $('.medicamentos').val()
           addremedio(ds, remedios)
         }
@@ -136,7 +136,7 @@ function App() {
       </div>
       <div className='dados'>
       <label>Vacinas</label>
-      <input className='vacinas'></input><input className='datavacina' type='date'></input><button className='addvacina' onClick={()=>{
+      <input className='vacinas'></input><input className='datavacina' type='date'></input><button className='addvacina btn btn-primary' onClick={()=>{
         var data = $('.datavacina').val()
         var nomevac = $('.vacinas').val()
         var newdata = data.split('-', 3)
@@ -156,8 +156,9 @@ function App() {
     {vac}
     </div>
     </div>
+    </div>
     <div>
-    <button className='modal_salvar' onClick={()=>{
+    <button className='modal_salvar btn btn-success' style={{fontSize:'1.5rem'}} onClick={()=>{
       if($('.formulario').attr('id') === 'Adicionar'){
         console.log('clicou')
         criar(vacina, remedios)
@@ -171,7 +172,7 @@ function App() {
       }
     }} 
     >salvar</button>
-    <button className='modal_sair' onClick={()=>{
+    <button className='modal_sair btn btn-danger' style={{marginRight:'1rem', fontSize:'1.5rem'}} onClick={()=>{
       $('.modal').css('display', 'none')
       setmodal('')
       Limpar()
@@ -182,7 +183,7 @@ function App() {
     </div>
     </div>
     <div className='lista'>
-    <h1>lista de pacientes</h1>
+    <h1>Lista de pacientes</h1>
     {content}
     </div>
     
