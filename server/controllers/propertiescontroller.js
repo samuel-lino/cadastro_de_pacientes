@@ -44,7 +44,7 @@ module.exports = {
     },
 
     async delete(request, response){
-        const {id} = request.params
+        const {id} = request.params;
         const props = await properties.findByIdAndDelete({ _id : id });
         if(!props){
             return response.status(401).json({

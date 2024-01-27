@@ -23,6 +23,12 @@ function App() {
   });
   const [vacina, setvacinas] = useState([])
   const [remedios , setremedios] = useState([])
+  const [hipertenso, sethipertenso] = useState([])
+  const [diabetico, setdiabetico] = useState([])
+  const [cadastro, setcadasctro] = useState([])
+
+
+ 
   const vac = vacina.map(vacinas=>(
     <div className='info_data'>
     <p id={vacinas.nome + '*' + vacinas.data}> Vacina: {vacinas.nome} <span>aplicada em: {vacinas.data}</span><button className='btn btn-danger' onClick={(event)=>{
@@ -69,9 +75,70 @@ function App() {
         setremedios(paciente[0].medicamentosdeusocontinuo)
         setvacinas(paciente[0].dosesdevacina)
       }}>Editar</button>
+      <button className='btn btn-secondary' id={paciente._id} onClick={async(event)=>{
+        var id = event.currentTarget.getAttribute('id');
+        var novo = dados.filter(item =>item._id ===id)
+        console.log(novo)
+        setcadasctro(novo[0])
+        if(cadastro.diabetico === true){
+          setdiabetico('Sim')
+        }
+        else{
+          setdiabetico('Não')
+        }
+        if(cadastro.hipertenso === true){
+          sethipertenso('Sim')
+        }
+        else{
+          sethipertenso('Não')
+        }
+        
+        
+        $('.modal_view').css('display', 'flex')
+      }}>Ver</button>
       </div>
       </div>
       ));
+const dadospaciente = (
+  <div className='formulario' id='visualizador'>
+    <h1>Dados do paciente</h1>
+    <label>Nome:{cadastro.nome}</label>
+    <label>Data de nascimento: {cadastro.nascimento}</label>
+    <label>Sexo: {cadastro.sexo}</label>
+    <label>CPF: {cadastro.cpf}</label>
+    <label>SUS: {cadastro.sus}</label>
+    <label>Hipertenso: {hipertenso}</label>
+    <label>Diabetico: {diabetico}</label>
+    <label>Medicamentos de uso continuo:</label>
+    <div className='lista'>
+      {cadastro.medicamentosdeusocontinuo && (
+        <div>
+          {cadastro.medicamentosdeusocontinuo.map(remedio => (
+            <div key={remedio}>
+              <label>{remedio}</label>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+    <label>Doses de vacina</label>
+    <div className='lista'>
+      {cadastro.dosesdevacina &&(
+        <div>
+          {cadastro.dosesdevacina.map(vacinas => (
+            <div key={vacinas.nome}>
+              <label>{vacinas.nome}: {vacinas.data}</label>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+    <button className='btn btn-danger' onClick={()=>{
+      $('.modal_view').css('display', 'none')
+    }}>Fechar</button>
+
+  </div>
+)
       return (
         <div className="App">
         <header className="App-header">
@@ -182,6 +249,10 @@ function App() {
     
     </div>
     </div>
+    <div className='modal_view' style={{display:'none'}}>
+      {dadospaciente}
+    </div>
+    
     <div className='lista'>
     <h1>Lista de pacientes</h1>
     {content}
